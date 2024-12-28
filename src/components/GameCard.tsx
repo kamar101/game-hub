@@ -1,16 +1,18 @@
-import { List } from "@chakra-ui/react";
-import useGames from "../hooks/useGames";
+import { Card, Heading, Image } from "@chakra-ui/react";
+import { Game } from "../hooks/useGames";
 
-function GameCard() {
-  const { data, error, loading } = useGames();
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+interface GameCardProps {
+  game: Game;
+}
+
+function GameCard({ game }: GameCardProps) {
   return (
-    <List.Root>
-      {data.map((game) => (
-        <List.Item>{game.name}</List.Item>
-      ))}
-    </List.Root>
+    <Card.Root>
+      <Image src={game.background_image} />
+      <Card.Body>
+        <Heading fontSize="2xl">{game.name}</Heading>
+      </Card.Body>
+    </Card.Root>
   );
 }
 
