@@ -22,11 +22,11 @@ const useData = <T>(endpoint: string) => {
         setLoading(false);
       })
       .catch((error) => {
-        if (error === CanceledError) return;
+        if (error instanceof CanceledError) return;
         setError(error.message);
         setLoading(false);
       });
-      return () => controller.abort();
+    return () => controller.abort();
   }, []);
 
   return { data, error, loading };

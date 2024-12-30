@@ -5,6 +5,8 @@ import GameBox from "./GameBox";
 
 function GameGrid() {
   const { data, error, loading } = useGames();
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
   return (
     <SimpleGrid columns={{ base: 1, md: 3, lg: 4 }} gap="30px" padding="10px">
       {data.map((game) => (
