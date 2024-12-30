@@ -5,6 +5,13 @@ export interface Game {
   name: string;
   slug: string;
   background_image: string;
+  parent_platforms: { platform: platform }[];
+}
+
+export interface platform {
+  id: number;
+  name: string;
+  slug: string;
 }
 
 const useGames = () => {
