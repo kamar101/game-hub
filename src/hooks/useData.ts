@@ -8,7 +8,7 @@ interface ClientResponse<T> {
 }
 
 const useData = <T>(endpoint: string) => {
-  const [data, setGames] = useState<T[]>([]);
+  const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +18,7 @@ const useData = <T>(endpoint: string) => {
     client
       .get<ClientResponse<T>>(endpoint, { signal: controller.signal })
       .then((response) => {
-        setGames(response.data.results);
+        setData(response.data.results);
         setLoading(false);
       })
       .catch((error) => {
