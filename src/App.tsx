@@ -2,6 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenresList from "./components/GenresList";
+import PlatformDropDown from "./components/PlatformDropDown";
 
 function App() {
   {
@@ -18,6 +19,7 @@ function App() {
         <GenresList />
       </GridItem>
       <GridItem gridArea="main">
+        <PlatformDropDown />
         <GameGrid />
       </GridItem>
     </Grid>

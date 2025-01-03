@@ -26,7 +26,6 @@ function GenresList() {
           </List.Item>
         ))}
       </List.Root>
-      );
     </>
   );
 }
