@@ -6,21 +6,33 @@ import {
 } from "@/components/ui/menu";
 import { Button } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import usePlatforms from "@/hooks/usePlatform";
+import usePlatforms, { Platform } from "@/hooks/usePlatform";
 
-function PlatformDropDown() {
+interface PlatformDropDownProps {
+  selectedPlatform: Platform | null;
+  onSelectedPlatform: (platform: Platform) => void;
+}
+
+function PlatformDropDown({
+  selectedPlatform,
+  onSelectedPlatform,
+}: PlatformDropDownProps) {
   const { data, error, loading } = usePlatforms();
 
   return (
     <MenuRoot>
       <MenuTrigger>
         <Button variant="outline">
-          Platforms <BsChevronDown />
+          {selectedPlatform?.name || "Platform"} <BsChevronDown />
         </Button>
       </MenuTrigger>
       <MenuContent>
         {data.map((platform) => (
-          <MenuItem key={platform.id} value={platform.slug}>
+          <MenuItem
+            key={platform.id}
+            value={platform.slug}
+            onClick={() => onSelectedPlatform(platform)}
+          >
             {platform.name}
           </MenuItem>
         ))}

@@ -4,8 +4,20 @@ import GameGrid from "./components/GameGrid";
 import GenresList from "./components/GenresList";
 import PlatformDropDown from "./components/PlatformDropDown";
 import OrderByDropDown from "./components/OrderByDropDown";
+import { useState } from "react";
+import { Platform } from "./hooks/usePlatform";
+import { Genre } from "./hooks/useGenres";
+
+export interface GameQuery {
+  platform: Platform | null;
+  ordering?: string;
+  search?: string;
+  genres?: Genre;
+}
 
 function App() {
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
   return (
     <Grid
       templateAreas={{ base: `"nav" "main"`, lg: `"nav nav" "side-bar main"` }}
@@ -22,10 +34,15 @@ function App() {
           Games
         </Heading>
         <HStack>
-          <PlatformDropDown />
+          <PlatformDropDown
+            selectedPlatform={gameQuery.platform}
+            onSelectedPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform: platform })
+            }
+          />
           <OrderByDropDown />
         </HStack>
-        <GameGrid />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );

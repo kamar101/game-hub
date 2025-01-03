@@ -3,9 +3,14 @@ import GameCard from "./GameCard";
 import useGames from "@/hooks/useGames";
 import GameBox from "./GameBox";
 import GameCardSkeleton from "./GameCardSkeleton";
+import { GameQuery } from "@/App";
 
-function GameGrid() {
-  const { data, error, loading } = useGames();
+interface GameGridProps {
+  gameQuery: GameQuery;
+}
+
+function GameGrid({ gameQuery }: GameGridProps) {
+  const { data, error, loading } = useGames(gameQuery);
   const numberOfSkeletons = 12;
   const skeletonArray = Array.from(
     { length: numberOfSkeletons },
