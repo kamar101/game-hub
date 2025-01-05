@@ -11,6 +11,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
   const searchRef = useRef<HTMLInputElement>(null);
   return (
     <form
+      className="search-bar"
       onSubmit={(e) => {
         e.preventDefault();
         if (searchRef.current) {
