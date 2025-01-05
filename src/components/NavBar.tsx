@@ -3,11 +3,15 @@ import { HStack, Image } from "@chakra-ui/react";
 import { ColorModeButton } from "./ui/color-mode";
 import SearchBar from "./SearchBar";
 
-function NavBar() {
+interface NavBarProps {
+  onGameSearch: (search: string) => void;
+}
+
+function NavBar({ onGameSearch }: NavBarProps) {
   return (
     <HStack justify="space-between">
       <Image src={logo} boxSize={20} />
-      <SearchBar />
+      <SearchBar onSearch={onGameSearch} />
       <ColorModeButton />
     </HStack>
   );

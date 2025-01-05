@@ -24,7 +24,11 @@ function App() {
       templateColumns={{ base: "1fr", lg: "200px 1fr" }}
     >
       <GridItem gridArea="nav">
-        <NavBar />
+        <NavBar
+          onGameSearch={(search) =>
+            setGameQuery({ ...gameQuery, search: search })
+          }
+        />
       </GridItem>
       <GridItem hideBelow="lg" gridArea="side-bar" paddingX={5}>
         <GenresList />
