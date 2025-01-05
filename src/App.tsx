@@ -1,4 +1,4 @@
-import { Grid, GridItem, Heading, HStack, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, HStack } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenresList from "./components/GenresList";
@@ -12,7 +12,7 @@ export interface GameQuery {
   platform: Platform | null;
   ordering: string;
   search?: string;
-  genres?: Genre;
+  genres: Genre;
 }
 
 function App() {
@@ -31,7 +31,12 @@ function App() {
         />
       </GridItem>
       <GridItem hideBelow="lg" gridArea="side-bar" paddingX={5}>
-        <GenresList />
+        <GenresList
+          onSelectGenre={(genre) =>
+            setGameQuery({ ...gameQuery, genres: genre })
+          }
+          selectedGenre={gameQuery.genres}
+        />
       </GridItem>
       <GridItem gridArea="main">
         <Heading as="h1" size="lg" paddingY={5} fontSize="5xl">

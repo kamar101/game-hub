@@ -9,12 +9,12 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
-import { platform } from "@/hooks/useGames";
+import { Platform } from "@/hooks/usePlatform";
 import { HStack, Icon } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface PlatformIconsProps {
-  platforms: platform[];
+  platforms: Platform[];
 }
 
 function PlatformIcons({ platforms }: PlatformIconsProps) {
