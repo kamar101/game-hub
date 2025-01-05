@@ -7,6 +7,7 @@ import OrderByDropDown from "./components/OrderByDropDown";
 import { useState } from "react";
 import { Platform } from "./hooks/usePlatform";
 import { Genre } from "./hooks/useGenres";
+import DynamicHeading from "./components/DynamicHeading";
 
 export interface GameQuery {
   platform: Platform | null;
@@ -39,9 +40,7 @@ function App() {
         />
       </GridItem>
       <GridItem gridArea="main">
-        <Heading as="h1" size="lg" paddingY={5} fontSize="5xl">
-          Games
-        </Heading>
+        <DynamicHeading gameQuery={gameQuery} />
         <HStack>
           <PlatformDropDown
             selectedPlatform={gameQuery.platform}
