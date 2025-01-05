@@ -1,4 +1,4 @@
-import { HStack, List, Spinner, Image, Heading } from "@chakra-ui/react";
+import { HStack, List, Image, Heading } from "@chakra-ui/react";
 import useGenres, { Genre } from "@/hooks/useGenres";
 import cropImage from "@/services/crop-image";
 import { Button } from "./ui/button";
@@ -9,9 +9,7 @@ interface GenresListProps {
 }
 
 function GenresList({ onSelectGenre, selectedGenre }: GenresListProps) {
-  const { data, error, loading } = useGenres();
-  if (loading) return <Spinner />;
-  if (error) return null;
+  const { data } = useGenres();
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>

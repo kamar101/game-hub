@@ -17,7 +17,7 @@ function PlatformDropDown({
   selectedPlatform,
   onSelectedPlatform,
 }: PlatformDropDownProps) {
-  const { data, error, loading } = usePlatforms();
+  const { data} = usePlatforms();
 
   return (
     <MenuRoot>

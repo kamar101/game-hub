@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import client from "../services/api-client";
-import { Axios, AxiosRequestConfig, CanceledError } from "axios";
+import {AxiosRequestConfig, CanceledError } from "axios";
 
 interface ClientResponse<T> {
   results: T[];

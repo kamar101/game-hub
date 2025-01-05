@@ -7,7 +7,7 @@ export interface Platform {
 }
 
 const usePlatform = () => {
-  return { data: platforms, error: null, loading: false };
+  return { data: platforms };
 };
 
 export default usePlatform;
