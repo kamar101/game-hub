@@ -3,8 +3,10 @@ import { LuSearch } from "react-icons/lu";
 import { InputGroup } from "./ui/input-group";
 import { useRef } from "react";
 import useGameQueryStore from "@/services/store";
+import { useNavigate } from "react-router";
 
 function SearchBar() {
+  const navigate = useNavigate();
   const searchRef = useRef<HTMLInputElement>(null);
   const setSearch = useGameQueryStore((s) => s.setSearch);
   return (
@@ -14,6 +16,7 @@ function SearchBar() {
         e.preventDefault();
         if (searchRef.current) {
           setSearch(searchRef.current.value);
+          navigate("/");
         }
       }}
     >
