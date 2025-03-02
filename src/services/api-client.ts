@@ -27,7 +27,9 @@ class ApiClient<T> {
   };
 
   get = (id?: number | string) => {
-    axios_instance.get(this.endpoint + "/" + id).then((res) => res.data);
+    return axios_instance
+      .get<T>(this.endpoint + "/" + id)
+      .then((res) => res.data);
   };
 }
 

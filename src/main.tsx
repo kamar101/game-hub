@@ -5,7 +5,9 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
-import App from "./App.tsx";
+import Layout from "./pages/Layout.tsx";
+import HomePage from "./pages/HomePage.tsx";
+import GameDetailsPage from "./pages/GameDetailsPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +17,9 @@ createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<Layout />} />
+            <Route index element={<HomePage />} />
+            <Route path="games/:slug" element={<GameDetailsPage />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
