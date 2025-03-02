@@ -10,10 +10,10 @@ import { Genre } from "./hooks/useGenres";
 import DynamicHeading from "./components/DynamicHeading";
 
 export interface GameQuery {
-  platform: Platform | null;
+  platformId: number;
   ordering: string;
   search?: string;
-  genres: Genre;
+  genresId: number;
 }
 
 function App() {
@@ -34,9 +34,9 @@ function App() {
       <GridItem hideBelow="lg" gridArea="side-bar" paddingX={5}>
         <GenresList
           onSelectGenre={(genre) =>
-            setGameQuery({ ...gameQuery, genres: genre })
+            setGameQuery({ ...gameQuery, genresId: genre.id })
           }
-          selectedGenre={gameQuery.genres}
+          selectedGenreId={gameQuery.genresId}
         />
       </GridItem>
       <GridItem gridArea="main">
@@ -45,9 +45,9 @@ function App() {
           <Flex marginY={2}>
             <HStack>
               <PlatformDropDown
-                selectedPlatform={gameQuery.platform}
+                selectedPlatformId={gameQuery.platformId}
                 onSelectedPlatform={(platform) =>
-                  setGameQuery({ ...gameQuery, platform: platform })
+                  setGameQuery({ ...gameQuery, platformId: platform.id })
                 }
               />
               <OrderByDropDown

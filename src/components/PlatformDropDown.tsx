@@ -7,17 +7,20 @@ import {
 import { Button } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatforms, { Platform } from "@/hooks/usePlatform";
+import usePlatformId from "@/hooks/usePlatformId";
 
 interface PlatformDropDownProps {
-  selectedPlatform: Platform | null;
+  selectedPlatformId: number;
   onSelectedPlatform: (platform: Platform) => void;
 }
 
 function PlatformDropDown({
-  selectedPlatform,
+  selectedPlatformId,
   onSelectedPlatform,
 }: PlatformDropDownProps) {
   const { data } = usePlatforms();
+
+  const selectedPlatform = usePlatformId(selectedPlatformId);
 
   return (
     <MenuRoot>

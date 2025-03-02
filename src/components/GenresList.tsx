@@ -5,10 +5,10 @@ import { Button } from "./ui/button";
 
 interface GenresListProps {
   onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId: number;
 }
 
-function GenresList({ onSelectGenre, selectedGenre }: GenresListProps) {
+function GenresList({ onSelectGenre, selectedGenreId }: GenresListProps) {
   const { data } = useGenres();
   return (
     <>
@@ -32,7 +32,7 @@ function GenresList({ onSelectGenre, selectedGenre }: GenresListProps) {
                 textAlign={"left"}
                 whiteSpace={"normal"}
                 onClick={() => onSelectGenre(genre)}
-                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+                fontWeight={selectedGenreId === genre.id ? "bold" : "normal"}
               >
                 {genre.name}
               </Button>
