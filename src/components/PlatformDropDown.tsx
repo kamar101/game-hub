@@ -6,20 +6,14 @@ import {
 } from "@/components/ui/menu";
 import { Button } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import usePlatforms, { Platform } from "@/hooks/usePlatform";
+import usePlatforms from "@/hooks/usePlatform";
 import usePlatformId from "@/hooks/usePlatformId";
+import useGameQueryStore from "@/services/store";
 
-interface PlatformDropDownProps {
-  selectedPlatformId: number;
-  onSelectedPlatform: (platform: Platform) => void;
-}
-
-function PlatformDropDown({
-  selectedPlatformId,
-  onSelectedPlatform,
-}: PlatformDropDownProps) {
+function PlatformDropDown() {
   const { data } = usePlatforms();
-
+  const setSelectedPlatformId = useGameQueryStore((s) => s.setPlatformId);
+  const selectedPlatformId = useGameQueryStore((s) => s.gameQuery.platformId);
   const selectedPlatform = usePlatformId(selectedPlatformId);
 
   return (
@@ -34,7 +28,7 @@ function PlatformDropDown({
           <MenuItem
             key={platform.id}
             value={platform.slug}
-            onClick={() => onSelectedPlatform(platform)}
+            onClick={() => setSelectedPlatformId(platform.id)}
           >
             {platform.name}
           </MenuItem>

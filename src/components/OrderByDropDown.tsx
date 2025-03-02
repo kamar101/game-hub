@@ -4,18 +4,11 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
+import useGameQueryStore from "@/services/store";
 import { Button } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 
-interface OrderByDropDownProps {
-  selectedOrdering: string;
-  onSelectedOrdering: (ordering: string) => void;
-}
-
-function OrderByDropDown({
-  selectedOrdering,
-  onSelectedOrdering,
-}: OrderByDropDownProps) {
+function OrderByDropDown() {
   const options = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
@@ -24,6 +17,9 @@ function OrderByDropDown({
     { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average Rating" },
   ];
+
+  const setSelectedOrder = useGameQueryStore((s) => s.setOrdering);
+  const selectedOrdering = useGameQueryStore((s) => s.gameQuery.ordering);
 
   const getSelectedOrderingLabel = options.find(
     (option) => option.value === selectedOrdering
@@ -42,7 +38,7 @@ function OrderByDropDown({
           <MenuItem
             key={ordering.value}
             value={ordering.value}
-            onClick={() => onSelectedOrdering(ordering.value)}
+            onClick={() => setSelectedOrder(ordering.value)}
           >
             {ordering.label}
           </MenuItem>

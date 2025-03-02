@@ -2,20 +2,18 @@ import { Input } from "@chakra-ui/react";
 import { LuSearch } from "react-icons/lu";
 import { InputGroup } from "./ui/input-group";
 import { useRef } from "react";
+import useGameQueryStore from "@/services/store";
 
-interface SearchBarProps {
-  onSearch: (search: string) => void;
-}
-
-function SearchBar({ onSearch }: SearchBarProps) {
+function SearchBar() {
   const searchRef = useRef<HTMLInputElement>(null);
+  const setSearch = useGameQueryStore((s) => s.setSearch);
   return (
     <form
       className="search-bar"
       onSubmit={(e) => {
         e.preventDefault();
         if (searchRef.current) {
-          onSearch(searchRef.current.value);
+          setSearch(searchRef.current.value);
         }
       }}
     >

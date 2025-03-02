@@ -1,15 +1,15 @@
-import { GameQuery } from "@/App";
+import useGameQueryStore from "@/services/store";
 import useGenreId from "@/hooks/useGenreId";
 import usePlatformId from "@/hooks/usePlatformId";
 import { Heading } from "@chakra-ui/react";
 
-interface DynamicHeadingProps {
-  gameQuery: GameQuery;
-}
+function DynamicHeading() {
+  const platformId = useGameQueryStore((s) => s.gameQuery.platformId);
+  const platform = usePlatformId(platformId);
 
-function DynamicHeading({ gameQuery }: DynamicHeadingProps) {
-  const platform = usePlatformId(gameQuery.platformId);
-  const genres = useGenreId(gameQuery.genresId);
+  const genreId = useGameQueryStore((s) => s.gameQuery.genresId);
+  const genres = useGenreId(genreId);
+
   const heading = `${platform?.name || ""} ${genres?.name || ""} Games`;
   return (
     <Heading as="h1" size="lg" paddingY={5} fontSize="5xl">

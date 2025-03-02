@@ -1,15 +1,13 @@
 import { HStack, List, Image, Heading } from "@chakra-ui/react";
-import useGenres, { Genre } from "@/hooks/useGenres";
+import useGenres from "@/hooks/useGenres";
 import cropImage from "@/services/crop-image";
 import { Button } from "./ui/button";
+import useGameQueryStore from "@/services/store";
 
-interface GenresListProps {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenreId: number;
-}
-
-function GenresList({ onSelectGenre, selectedGenreId }: GenresListProps) {
+function GenresList() {
   const { data } = useGenres();
+  const setSelectedGenreId = useGameQueryStore((s) => s.setGenresId);
+  const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genresId);
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
@@ -31,7 +29,7 @@ function GenresList({ onSelectGenre, selectedGenreId }: GenresListProps) {
                 maxWidth={"100%"}
                 textAlign={"left"}
                 whiteSpace={"normal"}
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => setSelectedGenreId(genre.id)}
                 fontWeight={selectedGenreId === genre.id ? "bold" : "normal"}
               >
                 {genre.name}
