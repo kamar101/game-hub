@@ -17,9 +17,10 @@ createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Layout />} />
-            <Route index element={<HomePage />} />
-            <Route path="games/:slug" element={<GameDetailsPage />} />
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path="games/:slug" element={<GameDetailsPage />} />
+            </Route>
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />

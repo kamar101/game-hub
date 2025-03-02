@@ -1,4 +1,3 @@
-import React from "react";
 import { Game } from "./useGames";
 import ApiClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
