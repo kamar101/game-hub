@@ -17,7 +17,7 @@ function PlatformDropDown({
   selectedPlatform,
   onSelectedPlatform,
 }: PlatformDropDownProps) {
-  const { data} = usePlatforms();
+  const { data } = usePlatforms();
 
   return (
     <MenuRoot>
@@ -27,7 +27,7 @@ function PlatformDropDown({
         </Button>
       </MenuTrigger>
       <MenuContent>
-        {data.map((platform) => (
+        {data.results.map((platform) => (
           <MenuItem
             key={platform.id}
             value={platform.slug}
