@@ -1,4 +1,4 @@
-import { Grid, GridItem, HStack } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, HStack } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenresList from "./components/GenresList";
@@ -40,21 +40,25 @@ function App() {
         />
       </GridItem>
       <GridItem gridArea="main">
-        <DynamicHeading gameQuery={gameQuery} />
-        <HStack>
-          <PlatformDropDown
-            selectedPlatform={gameQuery.platform}
-            onSelectedPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform: platform })
-            }
-          />
-          <OrderByDropDown
-            selectedOrdering={gameQuery.ordering}
-            onSelectedOrdering={(order) =>
-              setGameQuery({ ...gameQuery, ordering: order })
-            }
-          />
-        </HStack>
+        <Box padding={2}>
+          <DynamicHeading gameQuery={gameQuery} />
+          <Flex marginY={2}>
+            <HStack>
+              <PlatformDropDown
+                selectedPlatform={gameQuery.platform}
+                onSelectedPlatform={(platform) =>
+                  setGameQuery({ ...gameQuery, platform: platform })
+                }
+              />
+              <OrderByDropDown
+                selectedOrdering={gameQuery.ordering}
+                onSelectedOrdering={(order) =>
+                  setGameQuery({ ...gameQuery, ordering: order })
+                }
+              />
+            </HStack>
+          </Flex>
+        </Box>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
